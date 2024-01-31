@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge</title>
+    <!-- <link rel="stylesheet" type="text/css" href="css/home.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body class="bg-light">
+    <div id="top_section">
+        <nav class="navbar shadow-sm p-2 mb-3 bg-white ">
+          <a class="nav-item text-muted text-uppercase" href="#" style="margin: 2px 2px 2px 850px;">home</a>
+          <a class="nav-item text-muted text-uppercase" href="#">product</a>
+          <a class="nav-item text-muted text-uppercase" href="#">gallery</a>
+          <a class="nav-item text-muted text-uppercase" href="#">blog</a>
+          <a class="nav-item text-muted text-uppercase" href="#">my inventory</a>
+        </nav>
+    </div>
+    <div id="profile_section" class="card mx-auto mb-3" style="width: 70rem;">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-2 m-auto">
+                    <img class="rounded-circle" src="images/anggrek.jpg" alt="" width="150" height="150">
+                </div>
+                <div class="col-sm-3 m-auto">
+                    <h2 id="profileName">Rosa</h2>
+                    <p id="profileRole">Peserta BFLP</p>
+                    <button type="button" onclick="getProfileData()" class="btn btn-success btn-sm">Edit</button>
+                    <button type="button" class="btn btn-info btn-sm">Resume</button>
+                </div>
+                <div class="col-sm">
+                    <table class="table table-borderless border-left table-sm">
+                        <tbody>
+                          <tr>
+                            <th class="col-sm-3" >Availability</th>
+                            <td id="profileAvailability">Full Time</td>
+                          </tr>
+                          <tr>
+                            <th >Usia</th>
+                            <td id="profileAge">17</td>
+                          </tr>
+                          <tr>
+                            <th >Lokasi</th>
+                            <td id="profileLocation">Jakarta, Indonesia</td>
+                          </tr>
+                          <tr>
+                            <th >Pengalaman</th>
+                            <td id="profileExperience">2</td>
+                          </tr>
+                          <tr>
+                            <th >Email</th>
+                            <td id="profileEmail">anggrek@bri.co.id</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="form_section" class="card mx-auto mb-3" style="width: 70rem;">
+        <div class="card-body">
+            <form id="editProfileForm">
+                <div class="form-group">
+                  <label for="inputName">Nama *</label>
+                  <input type="text" class="form-control must-be-filled" id="inputName" placeholder="Masukkan nama Anda">
+                  <div style="display: none; color: red;" id="#not-filled-inputName">
+                    Wajib diisi!
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputRole">Role *</label>
+                  <input type="text" class="form-control must-be-filled" id="inputRole" placeholder="Masukkan role">
+                  <div style="display: none; color: red;" id="#not-filled-inputRole">
+                    Wajib diisi!
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputAvailability">Availability</label>
+                  <input type="text" class="form-control" id="inputAvailability" placeholder="Masukkan tipe kontrak">
+                </div>
+                <div class="form-group">
+                  <label for="inputAge">Age</label>
+                  <input type="number" min=18 max=80 class="form-control" id="inputAge" placeholder="Masukkan usia Anda">
+                </div>
+                <div class="form-group">
+                  <label for="inputLocation">Lokasi</label>
+                  <input type="text" class="form-control" id="inputLocation" placeholder="Masukkan lokasi">
+                </div>
+                <div class="form-group">
+                  <label for="inputExperience">Years Experience</label>
+                  <input type="number" min="1" class="form-control" id="inputExperience" placeholder="Masukkan pengalaman Anda dalam tahun">
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail">Email</label>
+                    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Masukkan email Anda">
+                    <small id="emailHelp" class="form-text text-muted">Email Anda tidak akan disebar ke orang lain</small>
+                  </div>
+                <button onclick="updateProfileData()" type="button" class="btn btn-primary btn-block">Submit</button>
+            </form>
+        </div>
+    </div>
+</body>
+<script>
+  function getProfileData(){
+    let name = document.getElementById("profileName").innerText;
+    let role = document.getElementById("profileRole").innerText;
+    let availability = document.getElementById("profileAvailability").innerText;
+    let age = document.getElementById("profileAge").innerText;
+    let location = document.getElementById("profileLocation").innerText;
+    let experience = document.getElementById("profileExperience").innerText;
+    let email = document.getElementById("profileEmail").innerText;
+    
+    document.getElementById("inputName").value = name;
+    document.getElementById("inputRole").value = role;
+    document.getElementById("inputAvailability").value = availability;
+    document.getElementById("inputAge").value = age;
+    document.getElementById("inputLocation").value = location;
+    document.getElementById("inputExperience").value = experience;
+    document.getElementById("inputEmail").value = email;
+  }
+  function updateProfileData(){
+    let warning = checkWarning();
+    if(warning == "hide"){
+      let name = document.getElementById("inputName").value;
+      let role = document.getElementById("inputRole").value;
+      let availability = document.getElementById("inputAvailability").value;
+      let age = document.getElementById("inputAge").value;
+      let location = document.getElementById("inputLocation").value;
+      let experience = document.getElementById("inputExperience").value;
+      let email = document.getElementById("inputEmail").value;
+      
+      document.getElementById("profileName").innerText = name;
+      document.getElementById("profileRole").innerText = role;
+      document.getElementById("profileAvailability").innerText = availability;
+      document.getElementById("profileAge").innerText = age;
+      document.getElementById("profileLocation").innerText = location;
+      document.getElementById("profileExperience").innerText = experience;
+      document.getElementById("profileEmail").innerText = email;
+  
+      document.getElementById("editProfileForm").reset();
+      // document.getElementById("profile_section").scrollIntoView();
+      showAlert("Sukses!", "Data berhasil diupdate", "success");
+    }
+
+  }
+  function checkWarning(){
+    let status = "";
+    var inputs = document.querySelectorAll('.must-be-filled');
+    inputs.forEach(function (input) {
+      if(input.value == null || input.value == ""){
+        // warning ditampilin
+        document.getElementById('#not-filled-'+input.id).style.display = 'block';
+        document.getElementById("form_section").scrollIntoView();
+        status = "show";
+      } else{
+        // warning di hide
+        document.getElementById('#not-filled-'+input.id).style.display = 'none';
+        status = "hide";
+      }
+    });
+    return status;
+  }
+  function showAlert(title, message, icon){
+    // icon ada success, error, waning, info, question
+    Swal.fire({
+      title: title,
+      text: message,
+      icon: icon,
+      didClose: () => window.scrollTo(0,0)
+    })
+  }
+</script>
+</html>

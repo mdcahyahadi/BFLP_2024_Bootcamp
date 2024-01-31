@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penjumlahan Angka</title>
+    <!-- bootstrap -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+</head>
+<body>
+    <form id="formPenjumlahan">
+        <div class="form-group">
+          <label for="inputNumber1">Angka</label>
+          <input type="number" class="form-control" id="inputNumber1" placeholder="Masukkan angka">
+        </div>
+        <!-- <div class="form-group">
+            <label for="inputNumber2">Angka Kedua</label>
+            <input type="number" class="form-control" id="inputNumber2" placeholder="Masukkan angka kedua">
+        </div> -->
+        <button id="btnJumlah" type="button" class="btn btn-primary btn-block" onclick="cetakBintang()">Cetak!</button>
+        <p>Lihat hasil cetak bintang di console</p>
+    </form>
+    <div class="section" id="formPopUp">
+        <p id="hasil"></p>
+        <!-- <button type="button" class="btn cancel" onclick="closeForm()">Close</button> -->
+    </div>
+</body>
+<script>
+    function cetakBintang(){
+        let n = parseInt(document.getElementById("inputNumber1").value);
+        for (let index = 1; index <= n; index++) {
+            let spasi, bintang;
+            let line = "";
+            if(index < n){
+                spasi = n-index;
+                bintang = index;
+            } else if(index == n) {
+                spasi = 0;
+                bintang = n;
+            }
+            // console.log(index, n, spasi, bintang);
+            if(spasi != 0){
+                while(spasi>0){line+=" "; spasi--;};
+            }
+            if(bintang != 0){
+                bintang += index-1;
+                while(bintang>0){
+                    if(bintang%2==1){line+="*"; }
+                    else{line+="#";}
+                    bintang--;
+                };
+            }
+            console.log(line);
+            // console.log("\n");
+        }
+    }
+    function calculateNumber(number1, number2){
+        return number1 + number2;
+    }
+    function openForm() {
+        let number1 = parseInt(document.getElementById("inputNumber1").value);
+        let number2 = parseInt(document.getElementById("inputNumber2").value);
+        let hasil = calculateNumber(number1, number2);
+        document.getElementById("hasil").innerText = hasil;
+        // document.getElementById("formPopUp").style.display = "block";
+    }
+    // function closeForm() {
+    //     // document.getElementById("formPopUp").style.display = "none";
+    // }
+</script>
+
+</html>
